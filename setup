@@ -1,0 +1,6 @@
+Create the file in the terminal
+cd ReactSJ
+mkdir helloReact
+cd helloReact
+npm init
+npm install express@4 --save
