@@ -1,15 +1,17 @@
 var Greeter = React.createClass({
-  getDefaultProps: function () { //default info 
+  getDefaultProps: function () { //default info
       return {
-        name: 'React'
+        name: 'React',
+        message: 'This is the default message'
       };
   },
 render: function () {
   var name = this.props.name; //initilizes value to property in Greet name =
+  var message = this.props.message;
   return (
     <div>
       <h1>Hello {name}!</h1>
-      <p>This is from the component</p>
+      <p>{message}</p>
    </div>
 
   );
@@ -17,9 +19,12 @@ render: function () {
 
 }); //Component Creation
 
+var firstName = "Bob";
+// var newMsg = "Whats up world";
+
 //Will render the Greeter div with JSX to the DOM
   ReactDOM.render(
-     <Greeter name="Josh"/>,
+     <Greeter name={firstName} />,
     document.getElementById('app')
   );
 
