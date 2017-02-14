@@ -5,15 +5,26 @@ var Greeter = React.createClass({
         message: 'This is the default message'
       };
   },
+getInitialState: function () {
+  return {
+    name: this.props.name
+  };
+},
 onButtonClick: function (e) {
   e.preventDefault();
-  var name = this.refs.name.value;
+  var nameRef = this.refs.name;
+  var name = nameRef.value;
+  nameRef.value = '';
 
-  alert(name);
+  if(typeof name === 'string' && name.length > 0 ){
+    this.setState({
+      name: name
+    });
+  } 
 },
 
 render: function () {
-  var name = this.props.name; //initilizes value to property in Greet name =
+  var name = this.state.name; //initilizes value to property in Greet name =
   var message = this.props.message;
   return (
     <div>
