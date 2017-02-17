@@ -10,9 +10,19 @@ render: function (){
 });
 
 var GreeterForm = React.createClass({
+  onFormSubmit: function (e) {
+    e.preventDefault();
+
+    var name = this.refs.name.value;
+
+    if(name.length > 0){
+      this.refs.name.value = '';
+      this.props.onNewName(name);
+    }
+  },
     render: function () {
        return (
-         <form >
+         <form onSubmit={this.onFormSubmit} >
            <input type="text" ref="name"></input>
            <button>Set Name</button>
          </form>
@@ -33,17 +43,10 @@ getInitialState: function () {
     name: this.props.name
   };
 },
-onButtonClick: function (e) {
-  e.preventDefault();
-  var nameRef = this.refs.name;
-  var name = nameRef.value;
-  nameRef.value = '';
-
-  if(typeof name === 'string' && name.length > 0 ){
-    this.setState({
-      name: name
-    });
-  }
+handleNewName: function (name) {
+  this.setState({
+    name: name
+  });
 },
 
 render: function () {
@@ -56,11 +59,7 @@ render: function () {
 
     <GreeterMessage/>
 
-    <form onSubmit={this.onButtonClick}>
-      <input type="text" ref="name"></input>
-      <button>Set Name</button>
-    </form>
-      <GreeterForm/>
+    <GreeterForm onNewName={this.handleNewName}/>
    </div>
 
   );
