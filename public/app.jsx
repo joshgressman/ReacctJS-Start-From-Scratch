@@ -1,8 +1,9 @@
 var GreeterMessage = React.createClass({ //this is a nested component
 render: function (){
+  var name = this.props.name;
   return (
     <div>
-      <h1>Some H1</h1>
+      <h1>Hello {name}!</h1>
       <p>Some Paragraph</p>
     </div>
   );
@@ -54,11 +55,7 @@ render: function () {
   var message = this.props.message;
   return (
     <div>
-      <h1>Hello {name}!</h1>
-      <p>{message}</p>
-
-    <GreeterMessage/>
-
+    <GreeterMessage name={name}/>
     <GreeterForm onNewName={this.handleNewName}/>
    </div>
 
@@ -67,7 +64,7 @@ render: function () {
 
 }); //Component Creation
 
-var firstName = "Bob";
+var firstName = "Josh";
 // var newMsg = "Whats up world";
 
 //Will render the Greeter div with JSX to the DOM
