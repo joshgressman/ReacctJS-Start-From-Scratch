@@ -1,3 +1,9 @@
+
+
+//This is a presentaional component that renders stuff to the screen
+
+//presentaional components do not handle state, this is done within the container component
+
 var GreeterMessage = React.createClass({ //this is a nested component
 render: function (){
   var name = this.props.name;
@@ -10,6 +16,10 @@ render: function (){
   );
 }
 });
+
+//GreeterForm is also a presentational component does not maintain state
+//simply takes some props, renders the form, when the form gets submited it calls
+//a function onNewName
 
 var GreeterForm = React.createClass({
   onFormSubmit: function (e) {
@@ -32,6 +42,12 @@ var GreeterForm = React.createClass({
        );
     }
 });
+
+// This is the container component, it maintains state for the app
+// When state is updated it updates it's children
+// <GreeterMessage name={name} message={message}/> rerenders
+// <GreeterForm onNewName={this.handleNewName}/>
+// Note state can change, props can not
 
 var Greeter = React.createClass({
   getDefaultProps: function () { //default info
